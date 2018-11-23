@@ -1,7 +1,8 @@
 <?php
 
+use App\Models\Person;
+use App\Models\User;
+
 require __DIR__ . '/autoload.php';
 
-$db = new \App\Db;
-
-var_dump( $db->query('SELECT * FROM persons', [], '\App\Models\Person') );
+$db = new \App\Db();

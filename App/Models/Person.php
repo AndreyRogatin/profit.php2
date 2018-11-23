@@ -3,9 +3,9 @@
 namespace App\Models;
 
 
-class Person
+class Person extends Model
 {
-    public $id;
+    protected static $table = 'persons';
     public $firstName;
     public $lastName;
     public $age;
