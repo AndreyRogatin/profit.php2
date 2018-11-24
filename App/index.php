@@ -6,6 +6,6 @@ use App\Models\Article;
 
 require __DIR__ . '/autoload.php';
 
-$news = Article::getLastArticles(2);
+$news = Article::getLastArticles(3);
 
-var_dump($news);
+include __DIR__ . '/templates/index.php';
