@@ -4,45 +4,24 @@ require __DIR__ . '/../autoload.php';
 
 $db = new \App\Db();
 
-$sql1 = 'INSERT INTO users (login, email, password) 
-         VALUES (:login, :email, :password)';
+$sql = [];
 
-$sql2 = 'UPDATE users
-         SET email=:email
-         WHERE login=:login';
+$sql['create'] = 'CREATE TABLE testDbExecute (id INT, name TEXT)';
+$sql['insert'] = 'INSERT INTO testDbExecute (id, name) VALUES (:id, :name)';
+$sql['update'] = 'UPDATE testDbExecute SET name=:name WHERE id=:id';
+$sql['delete'] = 'DELETE FROM testDbExecute WHERE id=:id AND name=:name';
+$sql['badInsert'] = 'INSERT INTO tetDbExecute (id, name) VALUES (:id, :name)';
+$sql['badUpdate'] = 'UPDATE tetDbExecute SET name=:name WHERE id=:id';
+$sql['badDelete'] = 'DELETE FROM tetDbExecute WHERE id=:id AND name=:name';
+$sql['drop'] = 'DROP TABLE testDbExecute';
 
-$sql3 = 'DELETE FROM users
-         WHERE login=:login';
+$data = ['id' => 1, ':name' => 'test'];
 
-$sql4 = 'INSERT INTO sers (login, email, password) 
-         VALUES (:login, :email, :password)';
-
-$sql5 = 'UPDATE sers
-         SET email=:email
-         WHERE login=:login';
-
-$sql6 = 'DELETE FROM sers
-         WHERE login=:login';
-
-$data1 = [
-    ':login' => 'Kolya',
-    ':email' => 'kolya@mail.ru',
-    ':password' => '54321'
-];
-
-$data2 = [
-    ':email' => 'kolya@yandex.ru',
-    ':login' => 'Kolya'
-];
-
-$data3 = [
-    ':login' => 'Kolya'
-];
-
-
-assert(true === $db->execute($sql1, $data1));
-assert(true === $db->execute($sql2, $data2));
-assert(true === $db->execute($sql3, $data3));
-assert(false === $db->execute($sql4, $data1));
-assert(false === $db->execute($sql5, $data2));
-assert(false === $db->execute($sql6, $data3));
+assert(true === $db->execute($sql['create'], $data) );
+assert(true === $db->execute($sql['insert'], $data) );
+assert(true === $db->execute($sql['update'], $data) );
+assert(true === $db->execute($sql['delete'], $data) );
+assert(false === $db->execute($sql['badInsert'], $data) );
+assert(false === $db->execute($sql['badUpdate'], $data) );
+assert(false === $db->execute($sql['badDelete'], $data) );
+assert(true === $db->execute($sql['drop'], []) );
