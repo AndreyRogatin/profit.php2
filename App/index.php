@@ -2,9 +2,10 @@
 
 use App\Models\Person;
 use App\Models\User;
+use App\Models\Article;
 
 require __DIR__ . '/autoload.php';
 
-$user = User::findById(1);
+$news = Article::getLastArticles(2);
 
-var_dump($user);
+var_dump($news);
