@@ -5,4 +5,6 @@ use App\Models\User;
 
 require __DIR__ . '/autoload.php';
 
-$db = new \App\Db();
+$user = User::findById(1);
+
+var_dump($user);
