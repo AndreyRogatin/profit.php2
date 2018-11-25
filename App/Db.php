@@ -17,21 +17,14 @@ class Db
     {
         switch (true) {
             case is_bool($value):
-                $param = \PDO::PARAM_BOOL;
-                break;
+                return \PDO::PARAM_BOOL;
             case is_null($value):
-                $param = \PDO::PARAM_NULL;
-                break;
+                return \PDO::PARAM_NULL;
             case is_int($value):
-                $param = \PDO::PARAM_INT;
-                break;
-            case is_resource($value):
-                $param = \PDO::PARAM_LOB;
-                break;
+                return \PDO::PARAM_INT;
             default:
-                $param = \PDO::PARAM_STR;
+                return \PDO::PARAM_STR;
         }
-        return $param;
     }
 
     public function query(string $sql, array $data, string $class = '')
@@ -39,7 +32,7 @@ class Db
         $sth = $this->dbh->prepare($sql);
 
         foreach ($data as $key => $value) {
-            $sth->bindParam($key, $value, $this->getParam($value));
+            $sth->bindValue($key, $value, $this->getParam($value));
         }
 
         $sth->execute();
@@ -51,12 +44,9 @@ class Db
         $sth = $this->dbh->prepare($sql);
 
         foreach ($data as $key => $value) {
-            $sth->bindParam($key, $value, $this->getParam($value));
+            $sth->bindValue($key, $value, $this->getParam($value));
         }
 
-        $this->dbh->beginTransaction();
-        $res = $sth->execute();
-        $this->dbh->commit();
-        return $res;
+        return $sth->execute();
     }
 }

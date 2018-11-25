@@ -13,11 +13,12 @@ class Article extends Model
     public $body;
     public $source;
 
-    public static function getLastArticles(int $lim)
+    public static function getLastArticles(int $limit)
     {
         $db = new Db;
-        $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT :lim';
-        $data = [':lim' => $lim];
+        $sql = 'SELECT * FROM ' . static::$table .
+               ' ORDER BY id DESC LIMIT :limit';
+        $data = [':limit' => $limit];
         return $db->query($sql, $data, static::class);
     }
 }

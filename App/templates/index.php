@@ -11,7 +11,11 @@
     <h2>Последние новости</h2>
     <?php foreach ($news as $article) { ?>
         <hr>
-        <h3><?php echo $article->title; ?></h3>
+        <h3>
+            <a href="/App/article.php?id=<?php echo $article->id;  ?>">
+                <?php echo $article->title; ?>
+            </a>
+        </h3>
         <article><?php echo $article->body; ?></article>
         <p><i><?php echo $article->source; ?></i></p>
     <?php } ?>

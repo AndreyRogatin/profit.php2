@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Person;
-use App\Models\User;
 use App\Models\Article;
 
 require __DIR__ . '/autoload.php';
