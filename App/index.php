@@ -1,13 +1,14 @@
 <?php
 
 use App\Models\Article;
-use App\Models\User;
+use App\Models\Product;
 
 require __DIR__ . '/autoload.php';
 
-$user = User::findById(2);
-$user->email = 'vasya@yandex.ru';
-$user->update();
+$product = Product::findById(2);
+$product->price = 75000;
+$product->update();
+var_dump($product);
 
 
 $news = Article::getLastArticles(3);

@@ -39,9 +39,6 @@ abstract class Model
             $sets[] = $key . '=:' . $key;
         }
 
-        var_dump($data);
-        var_dump($sets);
-
         $db = new Db;
         $sql = 'UPDATE ' . static::$table . ' 
                 SET ' . implode(', ', $sets) . ' 
