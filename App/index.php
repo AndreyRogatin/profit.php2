@@ -1,12 +1,14 @@
 <?php
 
 use App\Models\Article;
-use App\Config;
+use App\Models\User;
 
 require __DIR__ . '/autoload.php';
 
-$conf = new Config;
-var_dump($conf->data['db']['host']);
+$user = User::findById(2);
+$user->email = 'vasya@yandex.ru';
+$user->update();
+
 
 $news = Article::getLastArticles(3);
 
