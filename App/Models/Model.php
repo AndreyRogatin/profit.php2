@@ -55,9 +55,8 @@ abstract class Model
                ' (' . implode(', ', $fields) . ') '  .
                'VALUES (' . implode(', ', array_keys($data)) . ')';
 
-        $res = $db->execute($sql, $data);
+        $db->execute($sql, $data);
         $this->id = $this->getLastId();
-        return $res;
     }
 
     public function update()
@@ -78,11 +77,24 @@ abstract class Model
         $sql = 'UPDATE ' . static::$table .
                ' SET ' . implode(', ', $sets) .
                ' WHERE id=:id';
-        return $db->execute($sql, $data);
+        $db->execute($sql, $data);
     }
 
     public function save()
     {
         (isset($this->id)) ? $this->update() : $this->insert();
+    }
+
+    public function delete()
+    {
+        if (isset($this->id)) {
+            $db = new Db;
+            $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
+            $data = [':id' => $this->id];
+            $db->execute($sql, $data);
+        }
+        foreach ($this as $key => $value) {
+            $this->$key = null;
+        }
     }
 }

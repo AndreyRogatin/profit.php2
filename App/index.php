@@ -5,11 +5,8 @@ use App\Models\Product;
 
 require __DIR__ . '/autoload.php';
 
-$product = new Product;
-$product->name = 'iPhone7';
-$product->price = 32000;
-$product->weight = 120;
-$product->save();
+$product = Product::findById(24);
+$product->delete();
 var_dump($product);
 
 
