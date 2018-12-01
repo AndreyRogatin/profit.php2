@@ -28,7 +28,7 @@ abstract class Model
     protected function getLastId()
     {
         $db = new Db;
-        $sql = 'SELECT * FROM ' . static::$table .
+        $sql = 'SELECT id FROM ' . static::$table .
                ' ORDER BY id DESC LIMIT 1';
         $res = ($db->query($sql, [], static::class));
         return (int)$res[0]->id;
@@ -79,5 +79,10 @@ abstract class Model
                ' SET ' . implode(', ', $sets) .
                ' WHERE id=:id';
         return $db->execute($sql, $data);
+    }
+
+    public function save()
+    {
+        (isset($this->id)) ? $this->update() : $this->insert();
     }
 }

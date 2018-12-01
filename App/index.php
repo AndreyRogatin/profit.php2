@@ -6,10 +6,10 @@ use App\Models\Product;
 require __DIR__ . '/autoload.php';
 
 $product = new Product;
-$product->name = 'iPhone9';
-$product->price = 35000;
-$product->weight = 130;
-$product->insert();
+$product->name = 'iPhone7';
+$product->price = 32000;
+$product->weight = 120;
+$product->save();
 var_dump($product);
 
 
