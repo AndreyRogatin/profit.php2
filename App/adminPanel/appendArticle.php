@@ -5,11 +5,12 @@ use App\Models\Article;
 require __DIR__ . '/../autoload.php';
 
 if (!empty($_POST)) {
-    $artilce = new Article;
-    $artilce->title = $_POST['title'];
-    $artilce->body = $_POST['body'];
-    $artilce->source = $_POST['source'];
-    $artilce->save();
+    $article = new Article;
+    $article->title = $_POST['title'];
+    $article->body = $_POST['body'];
+    $article->source = $_POST['source'];
+    $article->id = $_POST['id'] ?? null;
+    $article->save();
 }
 
 header('Location: /App/adminPanel/');

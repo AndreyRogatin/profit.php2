@@ -22,7 +22,7 @@
                 <a href="/App/adminPanel/deleteArticle.php?id=<?php echo $article->id; ?>">Удалить</a>
             </td>
             <td>
-                <a href="#">Редактировать</a>
+                <a href="/App/adminPanel/updateArticle.php?id=<?php echo $article->id; ?>">Редактировать</a>
             </td>
         </tr>
         <?php } ?>
