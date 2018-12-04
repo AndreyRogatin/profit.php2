@@ -28,7 +28,7 @@
         <?php } ?>
     </table>
     <h3>Добавить новость</h3>
-    <form action="/App/adminPanel/appendArticle.php" method="post">Заголовок<br>
+    <form action="/App/adminPanel/saveArticle.php" method="post">Заголовок<br>
         <input type="text" name="title" size="100" required>
         <br>Текст<br>
         <textarea name="body" cols="100" rows="20" required></textarea>

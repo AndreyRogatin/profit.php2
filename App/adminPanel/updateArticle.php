@@ -13,7 +13,7 @@ $article = Article::findById(abs((int)$_GET['id']));
 ?>
 
 <h3>Редактировать новость</h3>
-<form action="/App/adminPanel/appendArticle.php" method="post">Заголовок<br>
+<form action="/App/adminPanel/saveArticle.php" method="post">Заголовок<br>
     <input type="text" name="title" size="100" value="<?php echo $article->title; ?>" required>
     <br>Текст<br>
     <textarea name="body" cols="100" rows="20" required><?php echo $article->body; ?></textarea>
