@@ -9,11 +9,11 @@
 </head>
 <body>
     <h2>Админ Панель</h2>
-    <table border="1">
+    <table border="1" cellpadding="5">
         <tr>
             <th>Заголовок новости</th>
-            <th>Удаление</th>
-            <th>Редактирование</th>
+            <th></th>
+            <th></th>
         </tr>
         <?php foreach($articles as $article) { ?>
         <tr>
@@ -28,16 +28,13 @@
         <?php } ?>
     </table>
     <h3>Добавить новость</h3>
-    <form action="#" method="post">Заголовок<br>
+    <form action="/App/adminPanel/appendArticle.php" method="post">Заголовок<br>
         <input type="text" name="title" size="100" required>
         <br>Текст<br>
-        <textarea name="body" cols="100" rows="10" required></textarea>
+        <textarea name="body" cols="100" rows="20" required></textarea>
         <br>Источник<br>
-        <input type="text" name="author" required><br>
+        <input type="text" name="source" required>
         <button type="submit">Отправить</button>
     </form>
-    <?php
-    var_dump($articles);
-    ?>
 </body>
 </html>
