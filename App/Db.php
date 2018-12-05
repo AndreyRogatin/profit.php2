@@ -9,8 +9,10 @@ class Db
 
     public function __construct()
     {
-        $dsn = 'mysql:host=localhost;dbname=php2';
-        $this->dbh = new \PDO($dsn, 'root', '');
+        $conf = Config::getInstance();
+        $data = $conf->data['db'];
+        $dsn = 'mysql:host=' . $data['host'] . ';dbname=' . $data['dbname'];
+        $this->dbh = new \PDO($dsn, $data['login'], $data['pass']);
     }
 
     protected function getParam($value)

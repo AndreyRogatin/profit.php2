@@ -6,9 +6,18 @@ namespace App;
 class Config
 {
     public $data;
+    private static $instance;
 
-    public function __construct()
+    private function __construct()
     {
         $this->data = include __DIR__ . '/conf.php';
+    }
+
+    public static function getInstance()
+    {
+        if (empty(static::$instance)) {
+            static::$instance = new static();
+        }
+        return static::$instance;
     }
 }
