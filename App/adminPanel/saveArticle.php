@@ -2,7 +2,7 @@
 
 use App\Models\Article;
 
-require __DIR__ . '/../autoload.php';
+require __DIR__ . '/../../autoload.php';
 
 if (!empty($_POST)) {
     $article = new Article;

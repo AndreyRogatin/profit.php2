@@ -12,7 +12,7 @@
     <?php foreach ($news as $article) { ?>
         <hr>
         <h3>
-            <a href="/App/article.php?id=<?php echo $article->id;  ?>">
+            <a href="/article.php?id=<?php echo $article->id;  ?>">
                 <?php echo $article->title; ?>
             </a>
         </h3>
