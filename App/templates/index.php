@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Последние новости</h2>
-    <?php foreach ($news as $article) { ?>
+    <?php foreach ($news as $article) : ?>
         <hr>
         <h3>
             <a href="/article.php?id=<?php echo $article->id;  ?>">
@@ -18,6 +18,6 @@
         </h3>
         <article><?php echo $article->body; ?></article>
         <p><i><?php echo $article->source; ?></i></p>
-    <?php } ?>
+    <?php endforeach; ?>
 </body>
 </html>
