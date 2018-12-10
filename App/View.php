@@ -3,7 +3,7 @@
 namespace App;
 
 
-class View
+class View implements \Countable
 {
     protected $data = [];
 
@@ -46,5 +46,10 @@ class View
         $res = ob_get_contents();
         ob_end_clean();
         return $res;
+    }
+
+    public function count()
+    {
+        return \count($this->data);
     }
 }
