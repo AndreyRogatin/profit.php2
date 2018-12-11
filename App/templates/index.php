@@ -17,7 +17,7 @@
             </a>
         </h3>
         <article><?php echo $article->body; ?></article>
-        <p><i><?php echo $article->source; ?></i></p>
+        <p><i><?php echo $article->author; ?></i></p>
     <?php endforeach; ?>
 </body>
 </html>
