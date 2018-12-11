@@ -14,16 +14,25 @@ class Article extends Model
     public $source;
     public $author_id;
 
-    public function __get($name)
+    /**
+     * @param string $name
+     * @return object|null
+     */
+    public function __get(string $name)
     {
-        if ('author' === $name) {
-            if (isset($this->author_id)) {
-                $author = Author::findById($this->author_id);
-                var_dump($author);
+        if ('author' === $name && isset($this->author_id)) {
+            $author = Author::findById($this->author_id);
+            if (isset($author)) {
+                return $author;
             }
         }
+        return null;
     }
 
+    /**
+     * @param int $limit
+     * @return array
+     */
     public static function getLastArticles(int $limit)
     {
         $db = new Db;
