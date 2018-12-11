@@ -18,7 +18,7 @@ $article = Article::findById(abs((int)$_GET['id']));
     <br>Текст<br>
     <textarea name="body" cols="100" rows="20" required><?php echo $article->body; ?></textarea>
     <br>Источник<br>
-    <input type="text" name="source" value="<?php echo $article->source; ?>" required>
+    <input type="text" name="source" value="<?php echo $article->author->name; ?>" required>
     <input type="hidden" name="id" value="<?php echo $article->id; ?>">
     <button type="submit">Отправить</button>
 </form>

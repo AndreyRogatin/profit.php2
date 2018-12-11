@@ -11,7 +11,6 @@ class Article extends Model
 
     public $title;
     public $body;
-    public $source;
     public $author_id;
 
     /**
@@ -27,6 +26,17 @@ class Article extends Model
             }
         }
         return null;
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value)
+    {
+        if ('author' === $name) {
+            $this->author_id = $value->id;
+        }
     }
 
     /**
