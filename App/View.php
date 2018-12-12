@@ -9,16 +9,28 @@ class View implements \Countable, \Iterator
     protected $pos = 0;
     protected $keys = [];
 
+    /**
+     * @param $name
+     * @param $value
+     */
     public function __set($name, $value)
     {
         $this->data[$name] = $value;
     }
 
+    /**
+     * @param $name
+     * @return mixed|null
+     */
     public function __get($name)
     {
         return $this->data[$name] ?? null;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function __isset($name)
     {
         return isset($this->data[$name]);
@@ -32,11 +44,18 @@ class View implements \Countable, \Iterator
         $this->data[$name] = $value;
     }
 
+    /**
+     * @param string $template
+     */
     public function display(string $template)
     {
         echo $this->render($template);
     }
 
+    /**
+     * @param string $template
+     * @return false|string
+     */
     public function render(string $template)
     {
         foreach ($this->data as $key => $value) {
