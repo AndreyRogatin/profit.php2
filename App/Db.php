@@ -3,10 +3,17 @@
 namespace App;
 
 
+/**
+ * Class Db Модель Базы Данных
+ * @package App
+ */
 class Db
 {
     protected $dbh;
 
+    /**
+     * Db constructor. Устанавливает соединение с базой данных и сохраняет его
+     */
     public function __construct()
     {
         $conf = Config::getInstance();
@@ -15,6 +22,11 @@ class Db
         $this->dbh = new \PDO($dsn, $data['login'], $data['pass']);
     }
 
+    /**
+     * Возвращает константу PDO в зависимости от типы данных value
+     * @param $value
+     * @return int
+     */
     protected function getParam($value)
     {
         switch (true) {
@@ -29,6 +41,13 @@ class Db
         }
     }
 
+    /**
+     * Отправляет запрос к базе данных и возвращает массив с результатом выборки
+     * @param string $sql
+     * @param array $data
+     * @param string $class
+     * @return array
+     */
     public function query(string $sql, array $data, string $class = '')
     {
         $sth = $this->dbh->prepare($sql);
@@ -41,6 +60,12 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    /**
+     * Отправляет запрос к базе данных
+     * @param string $sql
+     * @param array $data
+     * @return bool
+     */
     public function execute(string $sql, array $data)
     {
         $sth = $this->dbh->prepare($sql);

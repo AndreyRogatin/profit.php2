@@ -5,6 +5,10 @@ namespace App\Models;
 
 use App\Db;
 
+/**
+ * Class Article Модель статьи
+ * @package App\Models
+ */
 class Article extends Model
 {
     protected static $table = 'news';
@@ -14,6 +18,7 @@ class Article extends Model
     public $author_id;
 
     /**
+     * Ищет запись таблицы author с заданным id
      * @param string $name
      * @return object|null
      */
@@ -29,6 +34,7 @@ class Article extends Model
     }
 
     /**
+     * Устанавливает поле author_id
      * @param $name
      * @param $value
      */
@@ -40,6 +46,7 @@ class Article extends Model
     }
 
     /**
+     * Возвращает limit последних записей из таблицы
      * @param int $limit
      * @return array
      */

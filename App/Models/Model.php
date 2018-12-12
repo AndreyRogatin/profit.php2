@@ -4,11 +4,20 @@ namespace App\Models;
 
 use App\Db;
 
+/**
+ * Class Model Базовая модель
+ * @package App\Models
+ */
 abstract class Model
 {
     protected static $table = '';
     public $id;
 
+    /**
+     * Ищет запись таблицы с заданным id
+     * @param $id
+     * @return object|bool
+     */
     public static function findById($id)
     {
         $db = new Db;
@@ -18,6 +27,10 @@ abstract class Model
         return $res[0] ?? false;
     }
 
+    /**
+     * Ищет все записи таблицы
+     * @return array
+     */
     public static function findAll()
     {
         $db = new Db;
@@ -25,15 +38,22 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
+    /**
+     * Ищет id последней вставленной записи
+     * @return int
+     */
     protected function getLastId()
     {
         $db = new Db;
         $sql = 'SELECT id FROM ' . static::$table .
-               ' ORDER BY id DESC LIMIT 1';
+            ' ORDER BY id DESC LIMIT 1';
         $res = ($db->query($sql, [], static::class));
         return (int)$res[0]->id;
     }
 
+    /**
+     * Вставляет новую запись в таблицу
+     */
     public function insert()
     {
         $vars = get_object_vars($this);
@@ -52,13 +72,16 @@ abstract class Model
         $db = new Db;
 
         $sql = 'INSERT INTO ' . static::$table .
-               ' (' . implode(', ', $fields) . ') '  .
-               'VALUES (' . implode(', ', array_keys($data)) . ')';
+            ' (' . implode(', ', $fields) . ') ' .
+            'VALUES (' . implode(', ', array_keys($data)) . ')';
 
         $db->execute($sql, $data);
         $this->id = $this->getLastId();
     }
 
+    /**
+     * Обновляет запись в таблице
+     */
     public function update()
     {
         $vars = get_object_vars($this);
@@ -75,16 +98,22 @@ abstract class Model
 
         $db = new Db;
         $sql = 'UPDATE ' . static::$table .
-               ' SET ' . implode(', ', $sets) .
-               ' WHERE id=:id';
+            ' SET ' . implode(', ', $sets) .
+            ' WHERE id=:id';
         $db->execute($sql, $data);
     }
 
+    /**
+     * Сохраняет, либо обновляет запись в таблице
+     */
     public function save()
     {
         (isset($this->id)) ? $this->update() : $this->insert();
     }
 
+    /**
+     * Удаляет запись из таблицы
+     */
     public function delete()
     {
         if (isset($this->id)) {
