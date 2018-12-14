@@ -1,10 +1,14 @@
 <?php
 
-use App\Models\Article;
-use App\View;
-
 require __DIR__ . '/autoload.php';
 
-$view = new View;
-$view->news = Article::getLastArticles(3);
-$view->display(__DIR__ . '/App/templates/index.php');
+if (!empty($_GET['ctrl'])) {
+    $ctrlClass = $_GET['ctrl'];
+} else {
+    $ctrlClass = 'Index';
+}
+
+$class = '\App\Controllers\\' . $ctrlClass;
+
+$ctrl = new $class;
+$ctrl->action();
