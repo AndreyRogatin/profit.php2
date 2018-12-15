@@ -8,16 +8,24 @@
     <title>News</title>
 </head>
 <body>
-    <h2>Последние новости</h2>
-    <?php foreach ($news as $article) : ?>
-        <hr>
-        <h3>
-            <a href="/index.php?ctrl=Article&id=<?php echo $article->id;  ?>">
-                <?php echo $article->title; ?>
-            </a>
-        </h3>
-        <article><?php echo $article->body; ?></article>
-        <p><i><?php echo $article->author->name; ?></i></p>
-    <?php endforeach; ?>
+<h2>Последние новости</h2>
+<?php foreach ($news as $article) : ?>
+    <hr>
+    <h3>
+        <a href="/article/?id=<?php echo $article->id; ?>">
+            <?php echo $article->title; ?>
+        </a>
+    </h3>
+    <article><?php echo $article->body; ?></article>
+    <p>
+        <i>
+            <?php
+            if (isset($article->author->name)) {
+                echo $article->author->name;
+            }
+            ?>
+        </i>
+    </p>
+<?php endforeach; ?>
 </body>
 </html>

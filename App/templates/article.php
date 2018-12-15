@@ -8,8 +8,14 @@
     <title>Article</title>
 </head>
 <body>
-    <h2><?php echo $article->title; ?></h2>
-    <article><?php echo $article->body; ?></article>
-    <p><?php echo $article->author->name; ?></p>
+<h2><?php echo $article->title; ?></h2>
+<article><?php echo $article->body; ?></article>
+<p>
+    <?php
+    if (isset($article->author->name)) {
+        echo $article->author->name;
+    }
+    ?>
+</p>
 </body>
 </html>

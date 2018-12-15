@@ -9,6 +9,11 @@ abstract class Controller
 {
     protected $view;
 
+    public function __construct()
+    {
+        $this->view = new View;
+    }
+
     public function access()
     {
         return true;
@@ -22,11 +27,6 @@ abstract class Controller
             echo 'Нет доступа';
         }
 
-    }
-
-    public function __construct()
-    {
-        $this->view = new View;
     }
 
     abstract public function handle();
