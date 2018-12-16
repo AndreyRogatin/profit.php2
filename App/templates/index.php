@@ -8,6 +8,8 @@
     <title>News</title>
 </head>
 <body>
+<p><a href="/Panel/index.php">Admin Panel</a></p>
+<hr>
 <h2>Последние новости</h2>
 <?php foreach ($news as $article) : ?>
     <hr>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <h3>Редактировать новость</h3>
-<form action="/SaveArticle" method="post">
+<form action="<?php echo $action ?? '/SaveArticle'?>" method="post">
     Заголовок<br>
     <input type="text" name="title" size="100" value="<?php echo $article->title; ?>" required>
     <br>Текст<br>

@@ -18,17 +18,17 @@
         <th></th>
     </tr>
     <?php foreach ($articles as $article) { ?>
-    <tr>
-        <td><?php echo $article->title; ?></td>
-        <td>
-            <a href="/DeleteArticle/?id=<?php echo $article->id; ?>">Удалить</a>
-        </td>
-        <td>
-            <a href="/UpdateArticle/?id=<?php echo $article->id; ?>">Редактировать</a>
-        </td>
-    </tr>
+        <tr>
+            <td><?php echo $article->title; ?></td>
+            <td>
+                <a href="/Panel/index.php?ctrl=ArticleEditor&act=delete&id=<?php echo $article->id; ?>">Удалить</a>
+            </td>
+            <td>
+                <a href="/Panel/index.php?ctrl=ArticleEditor&act=update&id=<?php echo $article->id; ?>">Редактировать</a>
+            </td>
+        </tr>
     <?php } ?>
 </table>
-<p><a href="/CreateArticle">Добавить новость</a></p>
+<p><a href="/Panel/index.php?ctrl=ArticleEditor&act=create">Добавить новость</a></p>
 </body>
 </html>
