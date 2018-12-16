@@ -28,6 +28,6 @@ class SaveArticle extends Controller
             $article->save();
         }
 
-        header('Location: /AdminPanel');
+        header('Location: /App/Controllers/AdminPanel/action');
     }
 }

@@ -5,13 +5,14 @@ require __DIR__ . '/autoload.php';
 $uri = $_SERVER['REQUEST_URI'];
 $uriParts = explode('/', $uri);
 
-if (!empty($uriParts[1])) {
-    $ctrlClass = ucfirst($uriParts[1]);
+if ('App' === $uriParts[1]) {
+    $action = array_pop($uriParts);
+    array_shift($uriParts);
+    $class = implode('\\', $uriParts);
 } else {
-    $ctrlClass = 'Index';
+    $class = '\App\Controllers\Index';
+    $action = 'action';
 }
 
-$class = '\App\Controllers\\' . $ctrlClass;
-
 $ctrl = new $class;
-$ctrl->action();
+$ctrl->$action();

@@ -15,6 +15,6 @@ class DeleteArticle extends Controller
             $article->delete();
         }
 
-        header('Location: /AdminPanel');
+        header('Location: /App/Controllers/AdminPanel/action');
     }
 }
