@@ -76,4 +76,13 @@ class Db
 
         return $sth->execute();
     }
+
+    /**
+     * Возвращает id последней записи вставленной в БД
+     * @return int
+     */
+    public function getLastInsertId()
+    {
+        return (int)$this->dbh->lastInsertId();
+    }
 }

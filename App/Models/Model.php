@@ -39,19 +39,6 @@ abstract class Model
     }
 
     /**
-     * Ищет id последней вставленной записи
-     * @return int
-     */
-    protected function getLastId()
-    {
-        $db = new Db;
-        $sql = 'SELECT id FROM ' . static::$table .
-            ' ORDER BY id DESC LIMIT 1';
-        $res = ($db->query($sql, [], static::class));
-        return (int)$res[0]->id;
-    }
-
-    /**
      * Вставляет новую запись в таблицу
      */
     public function insert()
@@ -76,7 +63,7 @@ abstract class Model
             'VALUES (' . implode(', ', array_keys($data)) . ')';
 
         $db->execute($sql, $data);
-        $this->id = $this->getLastId();
+        $this->id = $db->getLastInsertId();
     }
 
     /**
