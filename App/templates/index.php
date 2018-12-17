@@ -14,7 +14,7 @@
 <?php foreach ($news as $article) : ?>
     <hr>
     <h3>
-        <a href="/article/?id=<?php echo $article->id; ?>">
+        <a href="/App/Controllers/Article/action/?id=<?php echo $article->id; ?>">
             <?php echo $article->title; ?>
         </a>
     </h3>

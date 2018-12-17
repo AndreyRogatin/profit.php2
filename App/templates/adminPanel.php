@@ -21,14 +21,14 @@
     <tr>
         <td><?php echo $article->title; ?></td>
         <td>
-            <a href="/DeleteArticle/?id=<?php echo $article->id; ?>">Удалить</a>
+            <a href="/App/Controllers/DeleteArticle/action/?id=<?php echo $article->id; ?>">Удалить</a>
         </td>
         <td>
-            <a href="/UpdateArticle/?id=<?php echo $article->id; ?>">Редактировать</a>
+            <a href="/App/Controllers/UpdateArticle/action/?id=<?php echo $article->id; ?>">Редактировать</a>
         </td>
     </tr>
     <?php } ?>
 </table>
-<p><a href="/CreateArticle">Добавить новость</a></p>
+<p><a href="/App/Controllers/CreateArticle/action">Добавить новость</a></p>
 </body>
 </html>

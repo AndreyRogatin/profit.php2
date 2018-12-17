@@ -9,7 +9,7 @@
 </head>
 <body>
 <h3>Добавить новость</h3>
-<form action="<?php echo $action ?? '/SaveArticle'?>" method="post">
+<form action="<?php echo $action ?? '/App/Controllers/SaveArticle/action'; ?>" method="post">
     Заголовок<br>
     <input type="text" name="title" size="100" required>
     <br>Текст<br>
