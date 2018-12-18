@@ -19,7 +19,11 @@ class Db
         $conf = Config::getInstance();
         $data = $conf->data['db'];
         $dsn = 'mysql:host=' . $data['host'] . ';dbname=' . $data['dbname'];
-        $this->dbh = new \PDO($dsn, $data['login'], $data['pass']);
+        try {
+            $this->dbh = new \PDO($dsn, $data['login'], $data['pass']);
+        } catch (\PDOException $e) {
+            throw new DbExeption('Database connection error: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -56,7 +60,10 @@ class Db
             $sth->bindValue($key, $value, $this->getParam($value));
         }
 
-        $sth->execute();
+        $res = $sth->execute();
+        if (!$res) {
+            throw new DbExeption('Database query exception: ' . $sql);
+        }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
@@ -74,7 +81,11 @@ class Db
             $sth->bindValue($key, $value, $this->getParam($value));
         }
 
-        return $sth->execute();
+        $res = $sth->execute();
+        if (!$res) {
+            throw new DbExeption('Database execute exception: ' . $sql);
+        }
+        return $res;
     }
 
     /**

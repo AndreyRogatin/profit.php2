@@ -19,5 +19,9 @@ if ('App' === $uriParts[1]) {
     $action = 'action';
 }
 
-$ctrl = new $class;
-$ctrl->$action();
+try {
+    $ctrl = new $class;
+    $ctrl->$action();
+} catch (\App\DbExeption $e) {
+    echo $e->getMessage();
+}
