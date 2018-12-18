@@ -22,7 +22,7 @@ class Db
         try {
             $this->dbh = new \PDO($dsn, $data['login'], $data['pass']);
         } catch (\PDOException $e) {
-            throw new DbExeption('Database connection error: ' . $e->getMessage());
+            throw new DbExeption('Database connection error: ' . $e->getMessage(), 1);
         }
     }
 
@@ -62,7 +62,7 @@ class Db
 
         $res = $sth->execute();
         if (!$res) {
-            throw new DbExeption('Database query exception: ' . $sql);
+            throw new DbExeption('Database query exception: ' . $sql, 2);
         }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
@@ -83,7 +83,7 @@ class Db
 
         $res = $sth->execute();
         if (!$res) {
-            throw new DbExeption('Database execute exception: ' . $sql);
+            throw new DbExeption('Database execute exception: ' . $sql, 3);
         }
         return $res;
     }

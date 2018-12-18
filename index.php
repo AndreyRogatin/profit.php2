@@ -22,6 +22,7 @@ if ('App' === $uriParts[1]) {
 try {
     $ctrl = new $class;
     $ctrl->$action();
-} catch (\App\DbExeption $e) {
-    echo $e->getMessage();
+} catch (\App\DbExeption $ex) {
+    $ctrl = new \App\Controllers\DbException($ex);
+    $ctrl->action();
 }
