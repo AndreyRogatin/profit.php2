@@ -16,6 +16,8 @@ class Author extends Model
      * Ищет запись таблицы с заданным именем
      * @param $name
      * @return object|null
+     * @throws \App\DbExeption
+     * @throws \App\NotFoundException
      */
     public static function findByName($name)
     {

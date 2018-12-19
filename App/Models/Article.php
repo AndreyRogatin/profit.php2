@@ -22,6 +22,8 @@ class Article extends Model
      * Ищет запись таблицы author с заданным id
      * @param string $name
      * @return object|null
+     * @throws NotFoundException
+     * @throws \App\DbExeption
      */
     public function __get(string $name)
     {
@@ -50,6 +52,8 @@ class Article extends Model
      * Возвращает limit последних записей из таблицы
      * @param int $limit
      * @return array
+     * @throws NotFoundException
+     * @throws \App\DbExeption
      */
     public static function getLastArticles(int $limit)
     {
