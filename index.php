@@ -25,4 +25,7 @@ try {
 } catch (\App\DbExeption $ex) {
     $ctrl = new \App\Controllers\DbException($ex);
     $ctrl->action();
+} catch (\App\NotFoundException $ex) {
+    $ctrl = new \App\Controllers\NotFoundException($ex);
+    $ctrl->action();
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Db;
+use App\NotFoundException;
 
 /**
  * Class Model Базовая модель
@@ -24,7 +25,12 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $res = $db->query($sql, [':id' => $id], static::class);
 
-        return $res[0] ?? false;
+        if (empty($res[0])) {
+            throw new NotFoundException('Ресурс не найден', 4);
+        } else {
+            return $res[0];
+        }
+
     }
 
     /**
@@ -35,7 +41,13 @@ abstract class Model
     {
         $db = new Db;
         $sql = 'SELECT * FROM ' . static::$table;
-        return $db->query($sql, [], static::class);
+        $res = $db->query($sql, [], static::class);
+
+        if (empty($res)) {
+            throw new NotFoundException('Ресурс не найден', 5);
+        } else {
+            return $res;
+        }
     }
 
     /**

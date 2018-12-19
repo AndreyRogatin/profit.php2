@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use App\Db;
+use App\NotFoundException;
 
 /**
  * Class Article Модель статьи
@@ -56,6 +57,11 @@ class Article extends Model
         $sql = 'SELECT * FROM ' . static::$table .
             ' ORDER BY id DESC LIMIT :limit';
         $data = [':limit' => $limit];
-        return $db->query($sql, $data, static::class);
+        $res = $db->query($sql, $data, static::class);
+        if (empty($res)) {
+            throw new NotFoundException('Ресурс не найден', 6);
+        } else {
+            return $res;
+        }
     }
 }
