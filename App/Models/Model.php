@@ -14,10 +14,17 @@ abstract class Model
     protected static $table = '';
     public $id;
 
+    public function fill(array $data)
+    {
+        // TODO
+    }
+
     /**
      * Ищет запись таблицы с заданным id
-     * @param $id
+     * @param $id int
      * @return object|bool
+     * @throws NotFoundException
+     * @throws \App\DbExeption
      */
     public static function findById($id)
     {
@@ -36,6 +43,8 @@ abstract class Model
     /**
      * Ищет все записи таблицы
      * @return array
+     * @throws NotFoundException
+     * @throws \App\DbExeption
      */
     public static function findAll()
     {
