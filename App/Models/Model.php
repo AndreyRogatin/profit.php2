@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Db;
+use App\MultiException;
 use App\NotFoundException;
 
 /**
@@ -16,7 +17,19 @@ abstract class Model
 
     public function fill(array $data)
     {
-        // TODO
+        $errors = new MultiException();
+
+        if (!is_int($data['id'])) {
+            $errors->add(new \Exception('В поле id передано не число'));
+        }
+
+        if ($data['id'] < 0) {
+            $errors->add(new \Exception('В поле id передано отрицательное число'));
+        }
+
+        if (!$errors->empty()) {
+            throw $errors;
+        }
     }
 
     /**
