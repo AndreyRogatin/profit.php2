@@ -15,16 +15,24 @@ abstract class Model
     protected static $table = '';
     public $id;
 
+    /**
+     * @param array $data
+     * @throws MultiException
+     */
     public function fill(array $data)
     {
         $errors = new MultiException();
 
-        if (!is_int($data['id'])) {
+        if (is_int($data['id'])) {
+            $this->id = $data['id'];
+        } else {
             $errors->add(new \Exception('В поле id передано не число'));
         }
 
-        if ($data['id'] < 0) {
-            $errors->add(new \Exception('В поле id передано отрицательное число'));
+        if (is_string($data['table'])) {
+            static::$table = $data['table'];
+        } else {
+            $errors->add(new \Exception('В поле table передана не строка'));
         }
 
         if (!$errors->empty()) {

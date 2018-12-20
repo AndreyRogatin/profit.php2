@@ -13,6 +13,7 @@ class Db
 
     /**
      * Db constructor. Устанавливает соединение с базой данных и сохраняет его
+     * @throws DbExeption
      */
     public function __construct()
     {
@@ -51,6 +52,7 @@ class Db
      * @param array $data
      * @param string $class
      * @return array
+     * @throws DbExeption
      */
     public function query(string $sql, array $data, string $class = '')
     {
@@ -72,6 +74,7 @@ class Db
      * @param string $sql
      * @param array $data
      * @return bool
+     * @throws DbExeption
      */
     public function execute(string $sql, array $data)
     {
