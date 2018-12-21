@@ -22,12 +22,12 @@ if ('App' === $uriParts[1]) {
 try {
     $ctrl = new $class;
     $ctrl->$action();
-} catch (\App\DbExeption $ex) {
-    \App\Logger::log($ex);
-    $ctrl = new \App\Controllers\DbException($ex);
-    $ctrl->action();
 } catch (\App\NotFoundException $ex) {
-    \App\Logger::log($ex);
+    (new \App\Logger())->warning($ex->getMessage(), ['time' => time()]);
     $ctrl = new \App\Controllers\NotFoundException($ex);
+    $ctrl->action();
+} catch (\App\DbExeption $ex) {
+    (new \App\Logger())->critical($ex->getMessage(), ['time' => time()]);
+    $ctrl = new \App\Controllers\DbException($ex);
     $ctrl->action();
 }
