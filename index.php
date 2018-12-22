@@ -1,6 +1,10 @@
 <?php
 
+use SebastianBergmann\Timer\Timer;
+
 require __DIR__ . '/autoload.php';
+
+Timer::start();
 
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -31,3 +35,6 @@ try {
     $ctrl = new \App\Controllers\DbException($ex);
     $ctrl->action();
 }
+
+$time = Timer::stop();
+echo '<hr><p>' . Timer::resourceUsage() . '</p>';
