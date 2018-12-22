@@ -10,14 +10,8 @@
 <body>
 <p><a href="/">На главную</a></p>
 <hr>
-<h2><?php echo $article->title; ?></h2>
-<article><?php echo $article->body; ?></article>
-<p>
-    <?php
-    if (isset($article->author->name)) {
-        echo $article->author->name;
-    }
-    ?>
-</p>
+<h2>{{ article.title }}</h2>
+<article>{{ article.body }}</article>
+<p>{{ article.author.name }}</p>
 </body>
 </html>

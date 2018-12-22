@@ -19,6 +19,14 @@ class Article extends Model
     public $author_id;
 
     /**
+     * @return object|null
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
      * Ищет запись таблицы author с заданным id
      * @param string $name
      * @return object|null

@@ -11,23 +11,17 @@
 <p><a href="/Panel/index.php">Admin Panel</a></p>
 <hr>
 <h2>Последние новости</h2>
-<?php foreach ($news as $article) : ?>
+{% for article in news %}
     <hr>
     <h3>
-        <a href="/App/Controllers/Article/action/?id=<?php echo $article->id; ?>">
-            <?php echo $article->title; ?>
+        <a href="/App/Controllers/Article/action/?id={{ article.id }}">
+            {{ article.title }}
         </a>
     </h3>
-    <article><?php echo $article->body; ?></article>
+    <article>{{ article.body }}</article>
     <p>
-        <i>
-            <?php
-            if (isset($article->author->name)) {
-                echo $article->author->name;
-            }
-            ?>
-        </i>
+        <i>{{ article.author.name }}</i>
     </p>
-<?php endforeach; ?>
+{% endfor %}
 </body>
 </html>
