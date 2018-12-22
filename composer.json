@@ -1,6 +1,7 @@
 {
   "require": {
     "psr/log": "*",
-    "phpunit/php-timer": "*"
+    "phpunit/php-timer": "*",
+    "twig/twig": "*"
   }
 }
