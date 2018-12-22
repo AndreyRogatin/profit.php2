@@ -1,5 +1,6 @@
 {
   "require": {
-    "psr/log": "*"
+    "psr/log": "*",
+    "phpunit/php-timer": "*"
   }
 }
