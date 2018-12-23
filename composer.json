@@ -2,6 +2,7 @@
   "require": {
     "psr/log": "*",
     "phpunit/php-timer": "*",
-    "twig/twig": "*"
+    "twig/twig": "*",
+    "swiftmailer/swiftmailer": "*"
   }
 }
