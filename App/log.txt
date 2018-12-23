@@ -1,1 +1,2 @@
 warning|1545476543|Ресурс не найден
+critical|1545572798|Database connection error: SQLSTATE[HY000] [1049] Unknown database 'php25'

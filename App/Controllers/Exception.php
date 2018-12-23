@@ -3,16 +3,20 @@
 namespace App\Controllers;
 
 
+use App\Logger;
+
 class Exception extends Controller
 {
 
     protected $ex;
+    protected $logger;
     protected $title = 'Произошла ошибка!';
 
-    public function __construct($ex)
+    public function __construct(\Exception $ex)
     {
         parent::__construct();
         $this->ex = $ex;
+        $this->logger = new Logger;
     }
 
     public function handle()
