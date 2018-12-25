@@ -71,7 +71,11 @@ abstract class Model
     {
         $db = new Db;
         $sql = 'SELECT * FROM ' . static::$table;
-        $res = $db->query($sql, [], static::class);
+        $res = [];
+
+        foreach ($db->queryEach($sql, [], static::class) as $row) {
+            $res[] = $row;
+        }
 
         if (empty($res)) {
             throw new NotFoundException('Ресурс не найден', 5);

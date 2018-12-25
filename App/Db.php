@@ -70,6 +70,34 @@ class Db
     }
 
     /**
+     * Отправляет запрос к базе данных и возвращает генератор с результатом выборки
+     * @param string $sql
+     * @param array $data
+     * @param string $class
+     * @return \Generator
+     * @throws DbExeption
+     */
+    public function queryEach(string $sql, array $data, string $class = '')
+    {
+        $sth = $this->dbh->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $sth->bindValue($key, $value, $this->getParam($value));
+        }
+
+        $res = $sth->execute();
+        if (!$res) {
+            throw new DbExeption('Database query exception: ' . $sql, 2);
+        }
+
+        $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+
+        while (false !== ($row = $sth->fetch())) {
+            yield $row;
+        }
+    }
+
+    /**
      * Отправляет запрос к базе данных
      * @param string $sql
      * @param array $data
